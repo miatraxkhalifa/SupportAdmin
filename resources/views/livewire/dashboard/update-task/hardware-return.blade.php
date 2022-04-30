@@ -1,0 +1,57 @@
+<div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-2">
+    <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
+        <dl>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs mt-1 font-small text-gray-500 dark:text-gray-100">Status:</dt>
+
+                <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">
+
+                    <select wire:model.defer="status" class="w-1/2 px-1 py-1  mt-1 text-xs dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="0">For Collection</option>
+                        <option value="1">For Pick up</option>
+                        <option value="2">Shipped</option>
+                        <option value="3">Returned</option>
+                        <option value="4">For RA</option>
+
+                    </select>
+                </dd>
+            </div>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Device Name:</dt>
+                <dd class="text-xs ml-1 text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->HardwareReturn->SO->deviceName}}</dd>
+            </div>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Hardware Type:</dt>
+                <dd class="text-xs ml-1 text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->HardwareReturn->HardwareType->pluck('name')->first()}}</dd>
+            </div>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Approver</dt>
+                <dd class="text-xs ml-1 text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->HardwareReturn->Approver->pluck('name')->first()}}</dd>
+            </div>
+        </dl>
+    </div>
+    <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
+        <dl>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500 mt-1 dark:text-gray-100"> Contact Name :</dt>
+                <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
+                    <input wire:model.defer="contactName" class="block  w-3/4 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Contact Name" />
+                </dd>
+            </div>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500  mt-1 dark:text-gray-100"> Contact Number :</dt>
+                <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> <input wire:model.defer="contactNumber" class="block  w-3/4 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="contactNumber" />
+                </dd>
+            </div>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500  mt-1 dark:text-gray-100"> Contact Email :</dt>
+                <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> <input wire:model.defer="contactEmail" class="block  w-3/4 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="contactEmail" /></dd>
+            </div>
+            <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                <dt class="text-xs font-small text-gray-500  mt-1 dark:text-gray-100"> Remarks :</dt>
+                <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> <textarea wire:model.defer="remarks" placeholder="Admin notes here.." rows="2" cols="50" class="block w-full mt-1 text-xs text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"></textarea>
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
