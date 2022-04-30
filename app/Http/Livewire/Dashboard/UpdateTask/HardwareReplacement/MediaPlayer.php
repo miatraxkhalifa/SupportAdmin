@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 class MediaPlayer extends Component
 {
-    public $task, $status, $connection_type, $application, $solution, $orientation;
+    public $task, $status, $connection_type, $application, $solution, $orientation, $details;
 
     protected $rules = [
         'connection_type' => 'required',
@@ -43,9 +43,9 @@ class MediaPlayer extends Component
             'application' => $this->application,
             'solution' => $this->solution,
             'orientation' => $this->orientation,
+            'details' => $this->details,
         ]);
     }
-
 
     public function render()
     {
@@ -54,6 +54,7 @@ class MediaPlayer extends Component
         $this->application = $this->task->SO->SO_Type_MP->application;
         $this->solution = $this->task->SO->SO_Type_MP->solution;
         $this->orientation = $this->task->SO->SO_Type_MP->orientation;
+        $this->details = $this->task->SO->SO_Type_MP->details;
         return view('livewire.dashboard.update-task.hardware-replacement.media-player');
     }
 }

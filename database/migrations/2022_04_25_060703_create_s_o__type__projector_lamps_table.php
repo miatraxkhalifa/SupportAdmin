@@ -18,6 +18,7 @@ class CreateSOTypeProjectorLampsTable extends Migration
             $table->foreignId('so_id')->references('id')->on('s_o_s')->cascadeOnDelete();
             $table->string('brand');
             $table->string('model');
+            $table->longText('details')->nullable(); // SO Details
             $table->timestamps();
             $table->softDeletes();
         });

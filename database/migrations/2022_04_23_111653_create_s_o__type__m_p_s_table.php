@@ -21,6 +21,7 @@ class CreateSOTypeMPSTable extends Migration
             $table->string('application')->nullable();
             $table->string('solution')->nullable();
             $table->string('orientation')->nullable();
+            $table->longText('details')->nullable(); // SO Details
             $table->timestamps();
             $table->softDeletes();
         });

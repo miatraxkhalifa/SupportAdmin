@@ -7,10 +7,13 @@ use App\Models\RoleUsers;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Users extends Component
 {
     use WithPagination;
+    use AuthorizesRequests;
+
     public $deleteModal = false;
     public $editModal = false;
     public $roles = '';
@@ -44,6 +47,7 @@ class Users extends Component
 
     public function delete($id)
     {
+        $this->authorize('level2', App\Models\User::class);
         $this->deleteModal = $id;
     }
 
@@ -62,6 +66,7 @@ class Users extends Component
 
     public function edit($id)
     {
+        $this->authorize('level2', App\Models\User::class);
         $this->editModal = $id;
     }
 

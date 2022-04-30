@@ -64,6 +64,11 @@
                             <option value="Landscape"> Landscape </option>
                         </select>
                     </dd>
+
+                    <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Additional Details :</dt>
+                    <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
+                        <textarea wire:model.defer="details" placeholder="Admin notes here.." rows="2" cols="50" class="block w-3/4 mt-1 text-xs text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"></textarea>
+                    </dd>
                 </div>
             </dl>
         </div>

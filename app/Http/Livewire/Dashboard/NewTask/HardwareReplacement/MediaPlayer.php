@@ -13,7 +13,7 @@ class MediaPlayer extends Component
     // $connection_status = dhcp / static
     // $ip, $subnet, $dg, $dns1, $dns2
 
-    public $connection_type, $ssid, $status, $password, $connection_status, $ip, $subnet, $dg, $dns1, $dns2, $application, $solution, $orientation;
+    public $connection_type, $ssid, $status, $password, $connection_status, $ip, $subnet, $dg, $dns1, $dns2, $application, $solution, $orientation, $details;
 
     public $storeID, $postCode, $passCode;
 
@@ -104,23 +104,24 @@ class MediaPlayer extends Component
         // $this->validateData();
 
         if ($this->connection_type == 'wireless') {
-            $connection_type = '. ssid: ' . $this->ssid . ', password: ' . $this->password;
+            $connection_type = '. SSID: ' . $this->ssid . ', PASSWORD: ' . $this->password;
         } else {
             $connection_type = '';
         }
 
         if ($this->connection_status == 'static') {
-            $connection_status = 'ip: ' . $this->ip . ' subnet: ' . $this->subnet . ' dg: ' . $this->dg . ' dns: ' . $this->dns1 . ' & ' . $this->dns2;
+            $connection_status = '| IP: ' . $this->ip . ' SUBNET: ' . $this->subnet . ' DG: ' . $this->dg . ' DNS: ' . $this->dns1 . ' & ' . $this->dns2;
         } else {
             $connection_status = '';
         }
         SO_Type_MP::create([
             'so_id' => $id,
-            'connection_type' => $this->connection_type . $connection_type . ' : ' . $this->connection_status . $connection_status,
+            'connection_type' => ucwords($this->connection_type) . $connection_type . ' . ' . ucwords($this->connection_status) . $connection_status,
             'application' => $this->application,
             'solution' => $this->solution,
             'orientation' => $this->orientation,
             'status' => $this->status,
+            'details' => $this->details,
         ]);
     }
 }

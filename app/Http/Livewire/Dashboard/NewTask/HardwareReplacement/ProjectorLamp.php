@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProjectorLamp extends Component
 {
-    public $brand, $model;
+    public $brand, $model, $details;
 
     protected $rules = [
         'brand' => 'required',
@@ -32,7 +32,7 @@ class ProjectorLamp extends Component
     {
         return view('livewire.dashboard.new-task.hardware-replacement.projector-lamp');
     }
-    
+
     public function validateData()
     {
         $validation = Validator::make([
@@ -53,10 +53,11 @@ class ProjectorLamp extends Component
 
     public function save($id)
     {
-          SO_Type_ProjectorLamp::create([
+        SO_Type_ProjectorLamp::create([
             'so_id' => $id,
             'brand' => $this->brand,
             'model' => $this->model,
-          ]);
+            'details' => $this->details,
+        ]);
     }
 }

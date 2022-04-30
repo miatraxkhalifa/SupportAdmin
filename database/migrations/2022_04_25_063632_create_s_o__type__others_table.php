@@ -16,7 +16,7 @@ class CreateSOTypeOthersTable extends Migration
         Schema::create('s_o__type__others', function (Blueprint $table) {
             $table->id();
             $table->foreignId('so_id')->references('id')->on('s_o_s')->cascadeOnDelete();
-            $table->string('details');
+            $table->string('details')->nullable(); // SO Details
             $table->timestamps();
             $table->softDeletes();
         });

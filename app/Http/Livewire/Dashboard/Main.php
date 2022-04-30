@@ -8,10 +8,12 @@ use App\Models\User;
 use App\Models\TaskType;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Main extends Component
 {
     use WithPagination;
+    use AuthorizesRequests;
 
     public $q, $status, $adminSupport, $task_type;
 
@@ -33,10 +35,10 @@ class Main extends Component
             $q->where('roles_id', '1');
         })->get();
 
-        $tasks = Task::with('TaskType')->with('Owner')->with('Admin')->orderby('status', 'ASC')->orderby('created_at', 'ASC')
+        $tasks = Task::with('TaskType')->with('Owner')->with('Admin')->orderby('status', 'ASC')->orderby('created_at', 'DESC')
             ->when($this->q, function ($query) {
                 return $query->where(function ($query) {
-                    $query->where('case', 'LIKE', '%' . $this->q . '%');
+                    $query->where('case', 'LIKE', '%' . $this->q . '%')->orwhere('client', 'LIKE', '%' . $this->q . '%');
                 });
             })
             ->when($this->adminSupport, function ($query) {
@@ -103,5 +105,18 @@ class Main extends Component
         ]);
 
         //    $this->emit('invoiceTaskDeleted', $task->id);
+    }
+
+    public function grab(Task $id)
+    {
+        $this->authorize('admin', App\Models\User::class);
+        $id->update([
+            'admin' => auth()->user()->id,
+            'status' => '2',
+        ]);
+        $this->dispatchBrowserEvent('info', [
+            'message' => 'Task Grabbed',
+        ]);
+        redirect()->route('dashboard.show', $id->id);
     }
 }

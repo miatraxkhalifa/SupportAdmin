@@ -19,6 +19,7 @@ class CreateSOTypeScreensTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('serial');
+            $table->longText('details')->nullable(); // SO Details
             $table->timestamps();
             $table->softDeletes();
         });

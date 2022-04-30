@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Projector extends Component
 {
-    public $brand, $model;
+    public $brand, $model, $details;
 
     protected $rules = [
         'brand' => 'required',
@@ -48,11 +48,12 @@ class Projector extends Component
 
     public function save($id)
     {
-          SO_Type_Projector::create([
+        SO_Type_Projector::create([
             'so_id' => $id,
             'brand' => $this->brand,
             'model' => $this->model,
-          ]);
+            'details' => $this->details,
+        ]);
     }
 
     public function render()

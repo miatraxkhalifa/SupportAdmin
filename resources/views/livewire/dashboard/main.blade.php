@@ -1,12 +1,12 @@
 <section wire:poll.keep-alive>
-    <div class="container grid px-6 mx-auto">
+    <div class="container grid px-2 pt-6 mx-auto">
         <div class="flex w-full justify-between flex-wrap mb-2">
-            <div class="relative w-3/4 focus-within:text-purple-500 mt-2">
+            <div class="focus-within:text-purple-500 mt-2">
                 <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Dashboard
                 </h2>
             </div>
-            <div class="relative w-1/4 focus-within:text-purple-500 mt-2 ">
+            <div class="focus-within:text-purple-500 mt-2 ">
                 <button wire:click="new" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     <span>New Task</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 -mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -30,7 +30,7 @@
                         Total Open Tasks
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$total->where('status','=',0)->count()}}
+                        {{$total->where('status','=',1)->count()}}
                     </p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         Total In Progress Tasks
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{$total->where('status','=',1)->count()}}
+                        {{$total->where('status','=',2)->count()}}
                     </p>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <input wire:model.debounce.500ms="q" class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input" type="text" placeholder="Search Case" aria-label="Search" />
+                <input wire:model.debounce.500ms="q" class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input" type="text" placeholder="Search Case or Client" aria-label="Search" />
             </div>
             <div class="relative w-1/4 max-w-xl focus-within:text-purple-500 my-2">
                 <select wire:model="task_type" class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input">
@@ -187,16 +187,15 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-xs space-x-1">
+                                @can('admin', App\Models\User::class)
                                 @if($task->status === 1)
-                                <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                <button wire:click.prevent="grab({{$task->id}})" class="px-2 py-1 font-semibold leading-tight text-purple-700 bg-purple-100 rounded-full dark:bg-purple-700 dark:text-purple-100">
                                     Grab
-                                </span>
-                                @elseif($task->status === 2)
-                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    Mark as completed
-                                </span>
+
+                                </button>
 
                                 @endif
+                                @endcan
                             </td>
                         </tr>
                         @empty <p class="dark:text-white"> Nothing here </p>

@@ -21,7 +21,7 @@ class Network extends Component
         ];
     }
 
-    public $connection_type, $ssid, $password, $connection_status, $ip, $subnet, $dg, $dns1, $dns2, $hardware_type;
+    public $connection_type, $ssid, $password, $connection_status, $ip, $subnet, $dg, $dns1, $dns2, $hardware_type, $details;
 
     protected $rules = [
         'connection_type' => 'sometimes',
@@ -72,22 +72,23 @@ class Network extends Component
 
     public function save($id)
     {
-        if($this->connection_type == 'wireless') {
-            $connection_type = '. ssid: ' . $this->ssid . ', password: ' . $this->password; 
-          } else {
-              $connection_type = '';
-          }
-  
-          if($this->connection_status == 'static') {
-              $connection_status = 'ip: '. $this->ip . ' subnet: ' . $this->subnet . ' dg: ' . $this->dg . ' dns: ' . $this->dns1. ' & ' . $this->dns2;
-          } else {
-              $connection_status = '';
-          }
-          SO_Type_Network::create([
+        if ($this->connection_type == 'wireless') {
+            $connection_type = '. SSID: ' . $this->ssid . ', PASSWORD: ' . $this->password;
+        } else {
+            $connection_type = '';
+        }
+
+        if ($this->connection_status == 'static') {
+            $connection_status = '| IP: ' . $this->ip . ' SUBNET: ' . $this->subnet . ' DG: ' . $this->dg . ' DNS: ' . $this->dns1 . ' & ' . $this->dns2;
+        } else {
+            $connection_status = '';
+        }
+        SO_Type_Network::create([
             'so_id' => $id,
-            'connection_type' => $this->connection_type . $connection_type . ' : ' . $this->connection_status . $connection_status,
+            'connection_type' => ucwords($this->connection_type) . $connection_type . ' . ' . ucwords($this->connection_status) . $connection_status,
             'type' => $this->hardware_type,
-          ]);
+            'details' => $this->details,
+        ]);
     }
 
     public function render()

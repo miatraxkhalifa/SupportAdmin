@@ -36,7 +36,7 @@
                     <dd class="text-xs text-gray-900 sm:mt-0 ml-1 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_TYPE->name }}</dd>
                 </div>
                 <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                    <dt class="text-xs mt-1 font-small text-gray-500 dark:text-gray-100"> Approver:</dt>
+                    <dt class="text-xs mt-1  font-small text-gray-500 dark:text-gray-100"> Approver:</dt>
                     <dd class="text-xs ml-1 text-gray-900 sm:mt-0 mt-1 sm:col-span-2 dark:text-gray-200"> {{$task->SO->Approver->name }}</dd>
                 </div>
             </dl>

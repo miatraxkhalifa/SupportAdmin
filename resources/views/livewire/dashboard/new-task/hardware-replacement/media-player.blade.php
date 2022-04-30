@@ -187,7 +187,7 @@
                 <option value="3x1"> Triple </option>
                 <option value="4x1"> 4 x 1 </option>
                 <option value="5x1"> 5 x 1 </option>
-                <option value="B2b"> B2B </option>
+                <option value="B2B"> B2B </option>
                 <option value="Matrix"> Matrix </option>
                 <option value="VideoWall"> Video Wall </option>
                 <option value="LED"> LED </option>
@@ -216,6 +216,10 @@
                 </svg>
             </div>
         </label>
+    </div>
+
+    <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+        <textarea wire:model.defer="details" placeholder="Additional Details" rows="4" cols="50" class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"></textarea>
     </div>
 
 </section>

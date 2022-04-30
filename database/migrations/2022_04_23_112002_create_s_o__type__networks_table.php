@@ -19,6 +19,7 @@ class CreateSOTypeNetworksTable extends Migration
             $table->foreignId('so_id')->references('id')->on('s_o_s')->cascadeOnDelete();
             $table->string('connection_type')->nullable();
             $table->string('type')->nullable();
+            $table->longText('details')->nullable(); // SO Details
             $table->timestamps();
             $table->softDeletes();
         });

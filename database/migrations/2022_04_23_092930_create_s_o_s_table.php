@@ -24,7 +24,7 @@ class CreateSOSTable extends Migration
             $table->string('contactNumber')->nullable();
             $table->integer('approver');
             $table->integer('tasks_id');
-            $table->longText('remarks')->nullable();
+            $table->longText('remarks')->nullable(); //reason for replacement
             $table->timestamps();
             $table->softDeletes();
         });

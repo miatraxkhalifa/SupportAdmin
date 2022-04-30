@@ -441,6 +441,10 @@
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Orientation :</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_Type_MP->orientation}} </dd>
                     </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Additional Details :</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_Type_MP->details}} </dd>
+                    </div>
                 </dl>
             </div>
         </div>
@@ -450,19 +454,14 @@
             <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
                 <dl>
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">LabTech Status:</dt>
-                        <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">
-                            @if($task->SO->SO_Type_Network->status == 0) Online
-                            @elseif($task->SO->SO_Type_Network->status == 1) Engagis Tech to Dispose
-                            @endif
-                        </dd>
-                    </div>
-
-                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Network Device:</dt>
                         <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">
                             {{ucwords($task->SO->SO_Type_Network->type)}}
                         </dd>
+                    </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Additional Details :</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_Type_Network->details}} </dd>
                     </div>
                 </dl>
             </div>
@@ -510,6 +509,14 @@
                     </div>
                 </dl>
             </div>
+            <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
+                <dl>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Additional Details :</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_Type_Projector->details}} </dd>
+                    </div>
+                </dl>
+            </div>
         </div>
         @endisset
 
@@ -528,6 +535,14 @@
                         <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">
                             {{$task->SO->SO_Type_ProjectorLamp->model}}
                         </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
+                <dl>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Additional Details :</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_Type_ProjectorLamp->details}} </dd>
                     </div>
                 </dl>
             </div>
@@ -555,6 +570,15 @@
                         <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">
                             {{$task->SO->SO_Type_Screen->serial}}
                         </dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
+                <dl>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Additional Details :</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SO_Type_Screen->details}} </dd>
                     </div>
                 </dl>
             </div>

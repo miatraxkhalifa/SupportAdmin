@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Screen extends Component
 {
-    public $brand, $model, $serial;
+    public $brand, $model, $serial, $details;
 
     protected $rules = [
         'brand' => 'required',
@@ -32,7 +32,7 @@ class Screen extends Component
 
     public function validateData()
     {
-       // dd('test');
+        // dd('test');
         $validation = Validator::make([
             'brand' => $this->brand,
             'model' => $this->model,
@@ -52,12 +52,13 @@ class Screen extends Component
 
     public function save($id)
     {
-          SO_Type_Screen::create([
+        SO_Type_Screen::create([
             'so_id' => $id,
             'brand' => $this->brand,
             'model' => $this->model,
             'serial' => $this->serial,
-          ]);
+            'details' => $this->details,
+        ]);
     }
 
     public function render()
