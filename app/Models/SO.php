@@ -58,4 +58,9 @@ class SO extends Model
     {
         return $this->hasOne(SO_Type_Screen::class, 'so_id', 'id');
     }
+
+    public function HardwareReturn()
+    {
+        return $this->belongsTo(HardwareReturn::class, 'id', 'so_id');  //related table ,  local key, foreign key from related table
+    }
 }

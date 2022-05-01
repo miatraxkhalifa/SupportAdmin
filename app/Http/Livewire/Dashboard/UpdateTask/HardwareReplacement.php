@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 class HardwareReplacement extends Component
 {
-    public $task, $disposal, $deviceName, $address, $contactName, $contactEmail, $contactNumber, $remarks, $Status;
+    public $task, $disposal, $deviceName, $address, $contactName, $contactEmail, $contactNumber, $remarks, $Status, $SONumber;
 
     protected $listeners = ['updateTask' => 'update'];
 
@@ -59,6 +59,7 @@ class HardwareReplacement extends Component
         $this->contactNumber = $this->task->SO->contactNumber;
         $this->remarks = $this->task->SO->remarks;
         $this->Status = $this->task->SO->Status;
+        $this->SONumber = $this->task->SO->SONumber;
         return view('livewire.dashboard.update-task.hardware-replacement');
     }
 
@@ -74,7 +75,8 @@ class HardwareReplacement extends Component
             'contactNumber' => $this->contactNumber,
             'remarks' => $this->remarks,
             'Status' => $this->Status,
+            'SONumber' => $this->SONumber,
         ]);
-        $this->emit('updateTask');
+        $this->emit('updateTaskSO');
     }
 }

@@ -77,6 +77,7 @@ class OnsiteTech extends Component
             OutofScope::create([
                 'quote' => $this->quote,
                 'tasks_id' => $task->id,
+                'status' => '1',
             ]);
             $this->dispatchEvent();
         } else {
@@ -97,7 +98,7 @@ class OnsiteTech extends Component
                 'contactNumber' => $this->contactNumber,
                 'approver' => $this->approver,
                 'siteStatus' => 'Screen display: ' . $this->displayStatus . ',' . 'LT status: ' . $this->LTstatus,
-       
+
             ]);
             $this->dispatchEvent();
         }

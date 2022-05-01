@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\HardwareReturn;
+use App\Models\InvoiceRequest;
 use App\Models\OutofScope;
 use App\Models\Task;
 use App\Models\User;
@@ -91,7 +93,9 @@ class Main extends Component
 
     public function confirmDelete(Task $id)
     {
-        // dd($this->deleteTask);
+        HardwareReturn::where('tasks_id', $this->deleteTask)->delete();
+        InvoiceRequest::where('tasks_id', $this->deleteTask)->delete();
+
         $id->find($this->deleteTask)->delete();
         $checkOOW = OutofScope::where('tasks_id', $this->deleteTask)->count();
         if ($checkOOW >= 1) {
@@ -99,6 +103,7 @@ class Main extends Component
                 'status' => '0',
             ]);
         }
+
         $this->closeModal();
         $this->dispatchBrowserEvent('warning', [
             'message' => 'Task deleted',

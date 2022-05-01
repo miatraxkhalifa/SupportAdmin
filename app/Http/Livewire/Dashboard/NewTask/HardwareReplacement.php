@@ -154,6 +154,7 @@ class HardwareReplacement extends Component
             OutofScope::create([
                 'quote' => $this->quote,
                 'tasks_id' => $task->id,
+                'status' => '1',
             ]);
             $SO = SO::create([
                 'disposal' => $this->disposal,

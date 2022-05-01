@@ -23,7 +23,8 @@ class CreateSOSTable extends Migration
             $table->string('contactEmail')->nullable();
             $table->string('contactNumber')->nullable();
             $table->integer('approver');
-            $table->integer('tasks_id');
+            //     $table->integer('tasks_id');
+            $table->foreignId('tasks_id')->references('id')->on('tasks')->cascadeOnDelete();
             $table->longText('remarks')->nullable(); //reason for replacement
             $table->timestamps();
             $table->softDeletes();

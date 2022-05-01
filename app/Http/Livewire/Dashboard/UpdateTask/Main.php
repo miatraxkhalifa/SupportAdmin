@@ -80,6 +80,7 @@ class Main extends Component
         $this->emit('updateTask');
         $this->emitSelf('mount');
         $this->dispatchEvent();
+        sleep('3');
         return redirect()->to('/dashboard' . '/' . $this->task->id);
     }
 

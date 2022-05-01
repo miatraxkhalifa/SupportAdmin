@@ -35,10 +35,16 @@ class InvoiceRequest extends Component
             'remarks' => $this->remarks,
         ]);
         if ($this->task->status == 3) {
+            $this->task->InvoiceRequest->OutofScope->update([
+                'status' => '2'
+            ]);
             $this->task->InvoiceRequest->update([
                 'Status' => 'Completed',
             ]);
         } else {
+            $this->task->InvoiceRequest->OutofScope->update([
+                'status' => '1'
+            ]);
             $this->task->InvoiceRequest->update([
                 'Status' => 'Pending',
             ]);

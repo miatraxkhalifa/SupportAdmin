@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard\UpdateTask\HardwareReplacement;
 
+use App\Models\Task;
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +18,12 @@ class MediaPlayer extends Component
         'connection_type.*' => 'Connection Type? Details?',
     ];
 
-    protected $listeners = ['updateTask' => 'update'];
+    protected $listeners = ['updateTaskSO' => 'update'];
+
+    public function mount(Task $task)
+    {
+        $this->task = $task->load('TaskType', 'Owner', 'Admin', 'OnsiteTech', 'OutofScope', 'InvoiceRequest', 'OnsiteTechScoping', 'ItemInquiry', 'WarrantyRepair', 'HardwareReturn', 'SO');
+    }
 
     public function validateData()
     {

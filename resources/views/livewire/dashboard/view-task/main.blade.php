@@ -45,7 +45,13 @@
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-50">Client:</dt>
                         <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">{{$task->client}}</dd>
-                    </div>
+                    </div> @isset($task->OutofScope)
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-50">Quote:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                            {{$task->OutofScope->quote}}
+                        </dd>
+                    </div> @endisset
                 </dl>
             </div>
             <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs  dark:bg-gray-700">
@@ -401,9 +407,14 @@
                             <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->contactEmail}} </dd>
                         </div>
                         <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                            <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> SO Number :</dt>
+                            <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->SONumber}} </dd>
+                        </div>
+                        <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                             <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Reason for Replacement :</dt>
                             <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->SO->remarks}} </dd>
                         </div>
+
                     </dl>
                 </dl>
             </div>

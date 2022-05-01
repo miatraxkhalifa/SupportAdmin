@@ -17,19 +17,19 @@ class InvoiceRequest extends Component
 
     protected $rules = [
         'task' => 'required',
-      //  'case' => 'required',
+        //  'case' => 'required',
         'remarks' => 'required',
     ];
 
     protected $messages = [
         'task.*' => 'Select quote',
-       // 'case.*' => 'Select case number',
+        // 'case.*' => 'Select case number',
         'remarks.*' => 'Kindly add remarks',
     ];
 
     public function mount()
     {
-        $this->quote = OutofScope::where('status', 0)->whereHas('Task', function ($q) {
+        $this->quote = OutofScope::where('status', 1)->whereHas('Task', function ($q) {
             $q->where('status', 3);
         })->get();
     }
@@ -48,7 +48,7 @@ class InvoiceRequest extends Component
     {
         $validation = Validator::make([
             'task' => $this->task,
-           // 'case' => $this->case,
+            // 'case' => $this->case,
             'remarks' => $this->remarks,
         ], $this->rules, $this->messages);
 
@@ -63,12 +63,12 @@ class InvoiceRequest extends Component
 
     public function save()
     {
-     //   dd($this->task);
+        //   dd($this->task);
         $this->validateData();
         $findOrigTask = OutofScope::where('id', $this->task)->pluck('tasks_id')->first();   //find($this->task)->pluck('tasks_id')->first();
-      //  dd($findOrigTask);
+        //  dd($findOrigTask);
         $task = Task::create([
-            'case' => Task::where('id',$findOrigTask)->pluck('case')->first(),
+            'case' => Task::where('id', $findOrigTask)->pluck('case')->first(),
             'client' => Task::where('id', $findOrigTask)->pluck('client')->first(),
             'tasks_id' => '4',
             'owner' => auth()->user()->id,
@@ -77,7 +77,7 @@ class InvoiceRequest extends Component
 
         ModelsInvoiceRequest::create([
             'tasks_id' => $task->id,
-            'quote_id' =>  OutofScope::where('id',$this->task)->pluck('id')->first(),
+            'quote_id' =>  OutofScope::where('id', $this->task)->pluck('id')->first(),
             'remarks' => $this->remarks,
         ]);
         OutofScope::where('id', $this->task)->update([
@@ -93,5 +93,4 @@ class InvoiceRequest extends Component
             'message' => 'Task Created',
         ]);
     }
-
 }

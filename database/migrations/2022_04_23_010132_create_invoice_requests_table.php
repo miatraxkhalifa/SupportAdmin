@@ -15,7 +15,8 @@ class CreateInvoiceRequestsTable extends Migration
     {
         Schema::create('invoice_requests', function (Blueprint $table) {
             $table->id();
-            $table->integer('tasks_id');
+            //     $table->integer('tasks_id');
+            $table->foreignId('tasks_id')->references('id')->on('tasks')->cascadeOnDelete();
             $table->integer('quote_id');
             $table->longText('remarks')->nullable();
             $table->timestamps();

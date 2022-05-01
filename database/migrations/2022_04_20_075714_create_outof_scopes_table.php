@@ -16,7 +16,7 @@ class CreateOutofScopesTable extends Migration
         Schema::create('outof_scopes', function (Blueprint $table) {
             $table->id();
             $table->string('quote');
-            $table->boolean('status')->default('0');
+            $table->boolean('status')->default('1');
             $table->integer('tasks_id');
             $table->timestamps();
             $table->softDeletes();

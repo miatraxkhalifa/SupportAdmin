@@ -20,6 +20,6 @@ class OutofScope extends Model
 
     public function InvoiceRequest()
     {
-        return $this->belongsTo(InvoiceRequest::class, 'quote_id', 'id');  //related table , foreign key from related table, local key
+        return $this->belongsTo(InvoiceRequest::class, 'id', 'quote_id');  //related table ,  local key, foreign key from related table,
     }
 }
