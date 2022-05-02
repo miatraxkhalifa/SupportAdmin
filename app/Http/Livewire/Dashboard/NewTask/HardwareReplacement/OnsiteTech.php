@@ -22,19 +22,23 @@ class OnsiteTech extends Component
         ];
     }
 
-    public function name($value) {
+    public function name($value)
+    {
         $this->contactName = $value;
     }
 
-    public function email($value) {
+    public function email($value)
+    {
         $this->contactEmail = $value;
     }
 
-    public function number($value) {
+    public function number($value)
+    {
         $this->contactNumber = $value;
     }
 
-    public function contactAddress($value) {
+    public function contactAddress($value)
+    {
         $this->address = $value;
     }
 
@@ -45,7 +49,7 @@ class OnsiteTech extends Component
 
     public function save($id)
     {
-       // dd($id);
+        // dd($id);
         $oldTask = Task::where('id', $id)->pluck('id')->first();
         $task = Task::create([
             'case' => Task::where('id', $id)->pluck('case')->first(),
@@ -64,6 +68,7 @@ class OnsiteTech extends Component
             'contactNumber' => $this->contactNumber,
             'approver' =>  SO::where('tasks_id', $oldTask)->pluck('approver')->first(),
             'tasks_id' => $task->id,
+            'related' => '1',
         ]);
     }
 }

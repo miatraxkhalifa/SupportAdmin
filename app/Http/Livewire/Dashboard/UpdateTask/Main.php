@@ -62,21 +62,26 @@ class Main extends Component
     public function update()
     {
         $this->validateData();
+
+        $admin = auth()->user()->whereHas(
+            'Role',
+            function ($q) {
+                $q->where('roles_id', '1');
+            }
+        )->first();
+
+        if ($admin != null) {
+            $this->task->update([
+                'admin' => auth()->user()->id,
+            ]);
+        }
+
         $this->task->update([
             'status' => $this->status,
             'case' => $this->case,
             'client' => ucwords($this->client),
         ]);
 
-        if ($this->status != 1) {
-            $this->task->update([
-                'admin' => auth()->user()->id,
-            ]);
-        } else {
-            $this->task->update([
-                'admin' => 0,
-            ]);
-        }
         $this->emit('updateTask');
         $this->emitSelf('mount');
         $this->dispatchEvent();

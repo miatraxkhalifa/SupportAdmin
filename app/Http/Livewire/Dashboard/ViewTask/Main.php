@@ -17,6 +17,7 @@ class Main extends Component
 
     public function render()
     {
+
         $task = $this->task;
         return view('livewire.dashboard.view-task.main', [
             'task' => $task,

@@ -141,7 +141,13 @@
                                 {!! implode(' ', array_slice(explode(' ', $task->client), 0, 3)); !!}
                             </td>
                             <td class="px-4 py-3 text-xs space-x-1">
-                                {{$task->TaskType->name}}
+                                <p> {{$task->TaskType->name}} </p>
+                                @isset($task->OnsiteTech->related)
+                                <p class="text-xs text-gray-600 dark:text-gray-400">
+                                    <span class="px-1 -py-1 text-xs leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                        w/ SO </span>
+                                </p>
+                                @endisset
                             </td>
                             <td class="px-4 py-3 text-xs space-x-1">
                                 {{$task->Owner->name}}

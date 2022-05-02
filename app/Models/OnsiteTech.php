@@ -14,4 +14,8 @@ class OnsiteTech extends Model
 
     protected $guarded = [];
 
+    public function Approver()
+    {
+        return $this->belongsTo(User::class, 'approver', 'id');
+    }
 }

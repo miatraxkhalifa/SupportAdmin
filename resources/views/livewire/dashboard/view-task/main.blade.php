@@ -75,6 +75,15 @@
         <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-2 mb-2">
             <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
                 <dl>
+                    @isset($task->OnsiteTech->related)
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">With SO:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
+                            <span class="px-1 -py-1 text-xs leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                Yes </span>
+                        </dd>
+                    </div>
+                    @endisset
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Device Name:</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">{{$task->OnsiteTech->deviceName}}</dd>
@@ -107,6 +116,10 @@
             </div>
             <div class="border-gray-200 dark:border-white space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
                 <dl>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Approver:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->Approver->name }} </dd>
+                    </div>
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Contact Name:</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->contactName}} </dd>
