@@ -4,23 +4,45 @@
             <dl>
                 @isset($task->OnsiteTech->related)
                 <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                    <dt class="text-xs font-small mt-1 text-gray-500 dark:text-gray-100">With SO:</dt>
+                    <dt class="text-xs font-small mt-1  text-gray-500 dark:text-gray-100">With SO:</dt>
                     <dd class="text-xs mt-1 text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
-                        <span class="px-1 -py-1 text-xs leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                        <span class="px-1 -py-1 ml-2 text-xs leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
                             Yes </span>
                     </dd>
                 </div>
                 @endisset
+                <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                    <dt class="text-xs font-small mt-2 text-gray-500 dark:text-gray-100">Onsite Tech Status:</dt>
+                    <select wire:model.defer="Status" class="w-full px-1 py-1  mt-1 text-xs dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="WIP">WIP</option>
+                        <option value="Booked">Booked</option>
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Visited">Visited</option>
+                        <option value="Paid">Paid</option>
+                    </select>
+                </div>
                 <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                     <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">Device Device:</dt>
                     <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
-                        <input wire:model.defer="deviceName" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
+                        <input wire:model.defer="deviceName" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Device Name" />
+                    </dd>
+                </div>
+                <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                    <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">LT ID:</dt>
+                    <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
+                        <input wire:model.defer="LTid" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="LT ID" />
+                    </dd>
+                </div>
+                <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                    <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">One Time Token:</dt>
+                    <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
+                        <input wire:model.defer="token" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Kioskadmin Password" />
                     </dd>
                 </div>
                 <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                     <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">Issue Reported:</dt>
                     <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
-                        <input wire:model.defer="issue" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
+                        <input wire:model.defer="issue" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Issue Reported" />
                     </dd>
                 </div>
                 <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
@@ -32,29 +54,16 @@
                 <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                     <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">Job Description:</dt>
                     <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
-                        <textarea wire:model.defer="jobDescription" placeholder="Troubleshooting steps performed" rows="2" cols="50" class="block w-full mt-1 text-xs text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"></textarea>
+                        <textarea wire:model.defer="jobDescription" placeholder="Troubleshooting steps performed" rows="10" cols="50" class="block w-full mt-1 text-xs text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"></textarea>
                     </dd>
                 </div>
-                <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                    <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">Date Completed:</dt>
-                    <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
-                        <input type="date" wire:model.defer="dateCompleted" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
-                    </dd>
-                </div>
-                <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                    <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Job Report:</dt>
-                    <select wire:model.defer="jobReport" class="w-full px-1 py-1  mt-1 text-xs dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
 
-                    </select>
-                </div>
             </dl>
         </div>
         <div class="border-gray-200 dark:border-white space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
             <dl>
                 <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                    <dt class="text-xs font-small text-gray-500 dark:text-gray-100"> Approver:</dt>
+                    <dt class="text-xs font-small text-gray-500 ml-1 dark:text-gray-100"> Approver:</dt>
                     <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->Approver->name }}</dd>
                 </div>
                 <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
@@ -82,11 +91,30 @@
                         <input wire:model.defer="address" class="block w-3/4 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
                     </dd>
                 </div>
+                <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                    <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">Tech ETA:</dt>
+                    <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
+                        <input type="date" wire:model.defer="techETA" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+                    </dd>
+                </div>
                 <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                     <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">PO:</dt>
                     <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                         <input wire:model.defer="PO" class="block w-3/4 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
                     </dd>
+                </div>
+                <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                    <dt class="text-xs mt-2 font-small text-gray-500 dark:text-gray-50">Date Completed:</dt>
+                    <dd class="text-xs text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
+                        <input type="date" wire:model.defer="dateCompleted" class="block w-1/2 px-1 py-1 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+                    </dd>
+                </div>
+                <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                    <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Job Report:</dt>
+                    <select wire:model.defer="jobReport" class="w-full px-1 py-1  mt-1 text-xs dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
                 </div>
 
                 <div class="px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">

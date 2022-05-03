@@ -8,17 +8,19 @@ use Illuminate\Support\Facades\Validator;
 
 class MediaPlayer extends Component
 {
-    public $task, $status, $connection_type, $application, $solution, $orientation, $details;
+    public $task, $status, $connection_type, $application, $solution, $orientation, $details, $oldMP;
 
     protected $rules = [
         'connection_type' => 'required',
+        'oldMP' => 'required',
     ];
 
     protected $messages = [
         'connection_type.*' => 'Connection Type? Details?',
+        'oldMP' => 'Old media player model?',
     ];
 
-    protected $listeners = ['updateTaskSO' => 'update'];
+    protected $listeners = ['updateTask' => 'update'];
 
     public function mount(Task $task)
     {
@@ -29,6 +31,7 @@ class MediaPlayer extends Component
     {
         $validation = Validator::make([
             'connection_type' => $this->connection_type,
+            'oldMP' => $this->oldMP,
         ], $this->rules, $this->messages);
 
         if ($validation->fails()) {
@@ -50,6 +53,7 @@ class MediaPlayer extends Component
             'solution' => $this->solution,
             'orientation' => $this->orientation,
             'details' => $this->details,
+            'oldMP' => $this->oldMP,
         ]);
     }
 
@@ -61,6 +65,7 @@ class MediaPlayer extends Component
         $this->solution = $this->task->SO->SO_Type_MP->solution;
         $this->orientation = $this->task->SO->SO_Type_MP->orientation;
         $this->details = $this->task->SO->SO_Type_MP->details;
+        $this->oldMP = $this->task->SO->SO_Type_MP->oldMP;
         return view('livewire.dashboard.update-task.hardware-replacement.media-player');
     }
 }

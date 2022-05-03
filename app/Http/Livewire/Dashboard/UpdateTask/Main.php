@@ -63,17 +63,12 @@ class Main extends Component
     {
         $this->validateData();
 
-        $admin = auth()->user()->whereHas(
-            'Role',
-            function ($q) {
-                $q->where('roles_id', '1');
-            }
-        )->first();
-
-        if ($admin != null) {
-            $this->task->update([
-                'admin' => auth()->user()->id,
-            ]);
+        $users = auth()->user()->Role()->pluck('roles_id');
+        foreach ($users as $key => $id) {
+            if ($id == 1)
+                $this->task->update([
+                    'admin' => auth()->user()->id,
+                ]);
         }
 
         $this->task->update([

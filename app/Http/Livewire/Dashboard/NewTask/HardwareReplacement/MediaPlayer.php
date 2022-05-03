@@ -15,6 +15,8 @@ class MediaPlayer extends Component
 
     public $connection_type, $ssid, $status, $password, $connection_status, $ip, $subnet, $dg, $dns1, $dns2, $application, $solution, $orientation, $details;
 
+    public $oldMP;
+
     public $storeID, $postCode, $passCode;
 
 
@@ -43,6 +45,7 @@ class MediaPlayer extends Component
         'solution' => 'required',
         'orientation' => 'required',
         'status' => 'required',
+        'oldMP' => 'required',
 
         'storeID' => 'required_if:application,7-Eleven',
         'postCode' => 'required_if:application,7-Eleven',
@@ -55,7 +58,8 @@ class MediaPlayer extends Component
         'solution' => 'required',
         'orientation' => 'required',
         'connection_status.*' => 'DHCP or Static?',
-        'status' => 'LT Status?'
+        'status' => 'LT Status?',
+        'oldMP' => 'Old media player model?',
     ];
 
     public function render()
@@ -85,6 +89,7 @@ class MediaPlayer extends Component
             'ssid' => $this->ssid,
             'password' => $this->password,
             'status' => $this->status,
+            'oldMP' => $this->oldMP,
         ], $this->rules, $this->messages);
 
         if ($validation->fails()) {
@@ -122,6 +127,7 @@ class MediaPlayer extends Component
             'orientation' => $this->orientation,
             'status' => $this->status,
             'details' => $this->details,
+            'oldMP' => $this->oldMP,
         ]);
     }
 }

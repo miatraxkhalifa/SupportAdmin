@@ -582,6 +582,7 @@ class ComposerStaticInit18fd415afb90f0180dd339ab2d74d65e
         'App\\Actions\\Jetstream\\DeleteTeam' => __DIR__ . '/../..' . '/app/Actions/Jetstream/DeleteTeam.php',
         'App\\Actions\\Jetstream\\DeleteUser' => __DIR__ . '/../..' . '/app/Actions/Jetstream/DeleteUser.php',
         'App\\Actions\\Jetstream\\UpdateTeamName' => __DIR__ . '/../..' . '/app/Actions/Jetstream/UpdateTeamName.php',
+        'App\\Console\\Commands\\DatabaseBackUp' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseBackUp.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',

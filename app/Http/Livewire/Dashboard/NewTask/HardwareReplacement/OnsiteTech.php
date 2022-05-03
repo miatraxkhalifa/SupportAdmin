@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class OnsiteTech extends Component
 {
-    public $jobDescription, $contactName, $contactNumber, $contactEmail, $address, $sameSiteDetails;
+    public $jobDescription, $contactName, $contactNumber, $contactEmail, $address, $sameSiteDetails, $LTid, $token;
 
     protected function getListeners()
     {
@@ -69,6 +69,8 @@ class OnsiteTech extends Component
             'approver' =>  SO::where('tasks_id', $oldTask)->pluck('approver')->first(),
             'tasks_id' => $task->id,
             'related' => '1',
+            'LTid' => $this->LTid,
+            'token' => $this->token,
         ]);
     }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class OnsiteTech extends Component
 {
 
-    public $deviceName, $issue, $address, $jobDescription, $contactName, $contactEmail, $contactNumber, $approver, $case, $client, $warranty, $quote;
+    public $deviceName, $issue, $address, $LTid, $token, $jobDescription, $contactName, $contactEmail, $contactNumber, $approver, $case, $client, $warranty, $quote;
 
     public $displayStatus, $LTstatus;
 
@@ -31,6 +31,8 @@ class OnsiteTech extends Component
         'client' => 'required',
         'displayStatus' => 'required',
         'LTstatus' => 'required',
+        'LTid' => 'required',
+        'token' => 'required',
     ];
 
     protected $messages = [
@@ -47,6 +49,8 @@ class OnsiteTech extends Component
         'client.*' => 'Client or company name is required',
         'displayStatus.*' => 'What is the display status onsite?',
         'LTstatus.*' => 'LabTech status?',
+        'LTid.*' => 'LabTech ID?',
+        'token.*' => 'Kioskadmin password?',
     ];
 
     public function requiredIfRule()
@@ -73,6 +77,8 @@ class OnsiteTech extends Component
                 'contactNumber' => $this->contactNumber,
                 'approver' => $this->approver,
                 'siteStatus' => 'Screen display: ' . $this->displayStatus . ',' . 'LT status: ' . $this->LTstatus,
+                'LTid' => $this->LTid,
+                'token' => $this->token,
             ]);
             OutofScope::create([
                 'quote' => $this->quote,
@@ -98,7 +104,8 @@ class OnsiteTech extends Component
                 'contactNumber' => $this->contactNumber,
                 'approver' => $this->approver,
                 'siteStatus' => 'Screen display: ' . $this->displayStatus . ',' . 'LT status: ' . $this->LTstatus,
-
+                'LTid' => $this->LTid,
+                'token' => $this->token,
             ]);
             $this->dispatchEvent();
         }
@@ -136,7 +143,8 @@ class OnsiteTech extends Component
             'approver' => $this->approver,
             'LTstatus' => $this->LTstatus,
             'displayStatus' => $this->displayStatus,
-
+            'LTid' => $this->LTid,
+            'token' => $this->token,
         ], $this->rules, $this->messages);
 
         if ($validation->fails()) {

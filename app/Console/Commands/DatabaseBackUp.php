@@ -76,10 +76,8 @@ class DatabaseBackUp extends Command
     public function handle()
 
     {
-
         $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".sql";
 
-        // $command = "mysqldump -h 127.0.0.1 -u root supportadmin > " . storage_path() . "/app/backup/" . $filename;
         $command = "mysqldump -h " . env('DB_HOST') . " -u " . env('DB_USERNAME') . " " . env('DB_DATABASE') . " > " . storage_path() . "/app/backup/" . $filename;
 
         $returnVar = NULL;

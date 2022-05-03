@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class OnsiteTech extends Component
 {
-    public $task, $deviceName, $issue, $address, $siteStatus, $jobDescription, $contactName, $contactNumber, $contactEmail, $dateCompleted, $jobReport, $PO, $remarks;
+    public $task, $deviceName, $issue, $techETA, $Status, $address, $siteStatus, $jobDescription, $LTid, $token, $contactName, $contactNumber, $contactEmail, $dateCompleted, $jobReport, $PO, $remarks;
 
     protected function getListeners()
     {
@@ -26,6 +26,8 @@ class OnsiteTech extends Component
         'contactName' => 'required',
         'contactEmail' => 'required',
         'contactNumber' => 'required',
+        'LTid' => 'required',
+        'token' => 'required',
     ];
 
     protected $messages = [
@@ -37,6 +39,8 @@ class OnsiteTech extends Component
         'contactName.*' => 'site contact name isrequired',
         'contactEmail.*' => 'contact email isrequired',
         'contactNumber.*' => 'contact number is required',
+        'LTid' => 'LabTech ID?',
+        'token' => 'Kioskadmin password?',
     ];
 
     public function mount(Task $task)
@@ -52,13 +56,16 @@ class OnsiteTech extends Component
         $this->siteStatus = $this->task->OnsiteTech->siteStatus;
         $this->jobDescription = $this->task->OnsiteTech->jobDescription;
         $this->contactName = $this->task->OnsiteTech->contactName;
-        $this->contactEmail=  $this->task->OnsiteTech->contactEmail;
+        $this->contactEmail =  $this->task->OnsiteTech->contactEmail;
         $this->contactNumber = $this->task->OnsiteTech->contactNumber;
         $this->dateCompleted = $this->task->OnsiteTech->dateCompleted;
         $this->jobReport = $this->task->OnsiteTech->jobReport;
         $this->PO = $this->task->OnsiteTech->PO;
         $this->remarks = $this->task->OnsiteTech->remarks;
-
+        $this->LTid =  $this->task->OnsiteTech->LTid;
+        $this->token =  $this->task->OnsiteTech->token;
+        $this->Status = $this->task->OnsiteTech->Status;
+        $this->techETA = $this->task->OnsiteTech->techETA;
         return view('livewire.dashboard.update-task.onsite-tech');
     }
 
@@ -73,6 +80,8 @@ class OnsiteTech extends Component
             'contactName' => $this->contactName,
             'contactEmail' => $this->contactEmail,
             'contactNumber' => $this->contactNumber,
+            'LTid' => $this->LTid,
+            'token' => $this->token,
         ], $this->rules, $this->messages);
 
         if ($validation->fails()) {
@@ -100,7 +109,10 @@ class OnsiteTech extends Component
             'jobReport' => $this->jobReport,
             'PO' => $this->PO,
             'remarks'  => $this->remarks,
+            'LTid' => $this->LTid,
+            'token' => $this->token,
+            'Status' => $this->Status,
+            'techETA' => $this->techETA,
         ]);
- 
     }
 }

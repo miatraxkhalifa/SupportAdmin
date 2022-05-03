@@ -72,7 +72,7 @@
 
         <!-- Onsite Tech Table -->
         @isset($task->OnsiteTech)
-        <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-2 mb-2">
+        <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-2 mb-2">
             <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
                 <dl>
                     @isset($task->OnsiteTech->related)
@@ -85,8 +85,37 @@
                     </div>
                     @endisset
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Onsite Tech Status:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200 -ml-2">
+                            @if($task->OnsiteTech->Status == 'WIP')
+                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                {{$task->OnsiteTech->Status}} </span>
+                            @elseif($task->OnsiteTech->Status == 'Booked')
+                            <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-blue-700 dark:text-blue-100">
+                                {{$task->OnsiteTech->Status}} </span>
+                            @elseif($task->OnsiteTech->Status == 'Cancelled')
+                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:bg-gray-500 dark:text-gray-100">
+                                {{$task->OnsiteTech->Status}} </span>
+                            @elseif($task->OnsiteTech->Status == 'Visited')
+                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                {{$task->OnsiteTech->Status}} </span>
+                            @elseif($task->OnsiteTech->Status == 'Paid')
+                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-100">
+                                {{$task->OnsiteTech->Status}} </span>
+                            @endif
+                        </dd>
+                    </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Device Name:</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">{{$task->OnsiteTech->deviceName}}</dd>
+                    </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">LT ID:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">{{$task->OnsiteTech->LTid}}</dd>
+                    </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">One Time Token:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">{{$task->OnsiteTech->token}}</dd>
                     </div>
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Issue Reported:</dt>
@@ -99,19 +128,10 @@
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Job Description:</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
-                            {{$task->OnsiteTech->jobDescription}}
+                            <p> {!! $task->OnsiteTech->jobDescription !!} </p>
                         </dd>
                     </div>
-                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Date Completed:</dt>
-                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->dateCompleted}} </dd>
-                    </div>
-                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
-                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Job Report:</dt>
-                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
-                            {{$task->OnsiteTech->jobReport}}
-                        </dd>
-                    </div>
+
                 </dl>
             </div>
             <div class="border-gray-200 dark:border-white space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
@@ -139,10 +159,23 @@
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->address}} </dd>
                     </div>
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Tech ETA :</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->techETA}} </dd>
+                    </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">PO:</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->PO}} </dd>
                     </div>
-
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Date Completed:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->dateCompleted}} </dd>
+                    </div>
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Job Report:</dt>
+                        <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200">
+                            {{$task->OnsiteTech->jobReport}}
+                        </dd>
+                    </div>
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Admin Remarks:</dt>
                         <dd class="text-xs text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-200"> {{$task->OnsiteTech->remarks}} </dd>
@@ -436,6 +469,12 @@
         <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-2">
             <div class="border-gray-200 space-x-2 space-y-2 rounded-lg shadow-xs dark:bg-gray-700">
                 <dl class="pt-1">
+                    <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
+                        <dt class="text-xs font-small text-gray-500 dark:text-gray-100">Old Media Player:</dt>
+                        <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">
+                            {{$task->SO->SO_Type_MP->oldMP}}
+                        </dd>
+                    </div>
                     <div class=" px-1 py-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5">
                         <dt class="text-xs font-small text-gray-500 dark:text-gray-100">LabTech Status:</dt>
                         <dd class="text-xs  sm:mt-0 sm:col-span-2 dark:text-gray-200 text-gray-900">

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('quotes', 'quotes')->name('quotes');
     Route::view('hardware-pickup', 'hardwarepickup')->name('hardwarepickup');
+    Route::view('vendor', 'vendor')->name('vendor');
 
     Route::get('/dashboard/{task}', App\Http\Livewire\Dashboard\ViewTask\Main::class)->name('dashboard.show');
     Route::get('/dashboard/{task}/update', App\Http\Livewire\Dashboard\UpdateTask\Main::class)->name('dashboard.update');
